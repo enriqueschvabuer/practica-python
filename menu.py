@@ -1,4 +1,5 @@
 import random
+import string
 
 
 def conversor (valor_dolar):
@@ -32,21 +33,32 @@ def palindromo(palabra):
         return True
     else:
         return False
+
+
+def generar_passwords():
+    caracter = list(string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation)
+    passwords = []
+    for i in range(15):
+        caracter_random = random.choice(caracter)
+        passwords.append(caracter_random)
+    passwords = "".join(passwords)
+    return passwords
     
 
 def run():
     respuesta = "s"
     while respuesta == "s" :
-        menu = input(""" 
+        menu = int(input(""" 
         1-Coversor de monedas
         2-Adivina el numero
         3-Numeros primos
         4-Palindromos
-        5-Salir
+        5-Generador de Passwords
+        6-Salir
 
         Elige una opción: 
 
-        """)
+        """))
 
 
         if menu == 1:
@@ -126,11 +138,21 @@ def run():
 
 
         elif menu == 5:
+            respuesta_passwords = "s"
+            while respuesta_passwords == "s":
+                new_passwords = generar_passwords()
+                print('Tu nueva contraseña es: ' + new_passwords)
+                respuesta_passwords=input("desea generar otra clave (s/n): ")
+                if respuesta_passwords == "n" :
+                    break
+                elif respuesta_passwords != "s":
+                    respuesta_passwords = input("Ingresaste una opcion incorrecta.desea continuar (s/n):")
+
+
+        elif menu == 6:
             break
         
-
-        respuesta = input("ingresaste una opcion inconrrecta. Desea continuar (s/n): ")       
-
+            
 
 
 if __name__ == "__main__":
